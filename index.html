@@ -20,7 +20,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Language Switcher Bar */
+        /* Navigation & Language Switcher */
         .lang-bar {
             background: #020617;
             padding: 0.8rem 1rem;
@@ -53,7 +53,7 @@
         }
 
         .container {
-            max-width: 850px;
+            max-width: 950px;
             margin: 0 auto;
             padding: 2rem 1rem;
         }
@@ -61,7 +61,7 @@
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 50vh;
+            min-height: 45vh;
             background: linear-gradient(135deg, #1e293b, #0f172a);
             display: flex;
             justify-content: center;
@@ -80,6 +80,10 @@
             box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
             margin-bottom: 1.2rem;
             transition: transform 0.3s ease;
+        }
+
+        .kaja-img:hover {
+            transform: scale(1.05);
         }
 
         .badge {
@@ -107,6 +111,13 @@
             margin-bottom: 1.5rem;
         }
 
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .btn {
             display: inline-block;
             background: #ef4444;
@@ -126,7 +137,16 @@
             transform: translateY(-2px);
         }
 
-        /* Dedicated Letter Section */
+        .btn-secondary {
+            background: #334155;
+            color: #f8fafc;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        /* Letter Section */
         .roksana-letter-section {
             background-color: #1e293b;
             padding: 3rem 1rem;
@@ -140,7 +160,6 @@
             border-radius: 12px;
             padding: 1.8rem 1.2rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            position: relative;
         }
 
         .letter-header {
@@ -184,10 +203,49 @@
             font-size: 1rem;
         }
 
-        /* Video Messages Section */
+        /* Gallery Section */
+        .gallery-section {
+            padding: 3rem 1rem;
+            background: #0f172a;
+            border-bottom: 1px solid #1e293b;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #334155;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            aspect-ratio: 4/3;
+            background: #1e293b;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: #ef4444;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Video Section */
         .memories-section {
             padding: 3rem 1rem;
             text-align: center;
+            background: #1e293b;
         }
 
         .section-title {
@@ -204,13 +262,13 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             justify-content: center;
         }
 
         .video-card {
-            background: #1e293b;
+            background: #0f172a;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid #334155;
@@ -218,21 +276,22 @@
             transition: transform 0.3s ease;
         }
 
-        /* Aspect ratio specifically tuned for Shorts (Vertical 9:16) */
-        .video-wrapper-shorts {
+        .video-card:hover {
+            transform: translateY(-3px);
+            border-color: #ef4444;
+        }
+
+        .video-wrapper {
             position: relative;
-            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
+            width: 100%;
             background: #000;
         }
 
-        .video-wrapper-shorts iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .video-wrapper video {
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-height: 400px;
+            display: block;
             border: 0;
         }
 
@@ -279,12 +338,9 @@
                 padding: 1.2rem 1rem;
             }
 
-            .letter-title {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 0.8rem;
             }
         }
     </style>
@@ -300,12 +356,15 @@
     <!-- Header / Hero Section -->
     <header class="hero">
         <div class="hero-content">
-            <img src="1.jpg" alt="Captain Kaja" class="kaja-img" onerror="this.src='1.jpeg'">
+            <img src="1.jpeg" alt="Captain Kaja" class="kaja-img" onerror="this.onerror=null; this.src='1.jpg';">
             <br>
             <span class="badge">#CaptainKaja</span>
             <h1 id="hero-title">Dla naszej Kapitanki ❤️</h1>
             <p class="subtitle" id="hero-subtitle">Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.</p>
-            <a href="#messages" class="btn" id="hero-btn">Wiadomości Wideo 🎥</a>
+            <div class="btn-group">
+                <a href="#messages" class="btn" id="hero-btn">Wiadomości Wideo 🎥</a>
+                <a href="#gallery" class="btn btn-secondary" id="gallery-btn">Galeria 📸</a>
+            </div>
         </div>
     </header>
 
@@ -318,11 +377,31 @@
                     <span class="sender-badge" id="sender-badge">Wiadomość od: Roksana</span>
                 </div>
                 <div class="letter-content" id="letter-body">
-                    <!-- Dynamic Text via JS -->
+                    <!-- Text rendered via JS -->
                 </div>
                 <div class="letter-footer" id="letter-footer">
                     — Roksana & Cała Drużyna ❤️
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title" id="photos-title">Wspólne Chwile 📸</h2>
+            <p class="section-desc" id="photos-desc">Nasza drużyna na boisku i poza nim:</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="1.jpeg" alt="Drużyna" loading="lazy" onerror="this.onerror=null; this.src='1.jpg';"></div>
+                <div class="gallery-item"><img src="2.jpeg" alt="Trening" loading="lazy" onerror="this.onerror=null; this.src='2.jpg';"></div>
+                <div class="gallery-item"><img src="3.jpeg" alt="Podróż" loading="lazy" onerror="this.onerror=null; this.src='3.jpg';"></div>
+                <div class="gallery-item"><img src="4.jpeg" alt="Wakacje" loading="lazy" onerror="this.onerror=null; this.src='4.jpg';"></div>
+                <div class="gallery-item"><img src="5.jpeg" alt="Lloret de Mar" loading="lazy" onerror="this.onerror=null; this.src='5.jpg';"></div>
+                <div class="gallery-item"><img src="6.jpeg" alt="Jajniki Grudziądz" loading="lazy" onerror="this.onerror=null; this.src='6.jpg';"></div>
+                <div class="gallery-item"><img src="7.jpeg" alt="Grupa czerwona" loading="lazy" onerror="this.onerror=null; this.src='7.jpg';"></div>
+                <div class="gallery-item"><img src="8.jpeg" alt="Gry i zabawy" loading="lazy" onerror="this.onerror=null; this.src='8.jpg';"></div>
+                <div class="gallery-item"><img src="9.jpeg" alt="Odpoczynek" loading="lazy" onerror="this.onerror=null; this.src='9.jpg';"></div>
             </div>
         </div>
     </section>
@@ -335,25 +414,73 @@
 
             <div class="video-grid">
                 
-                <!-- Video Message 1: Roksana -->
+                <!-- Video 1: vidio 1 -->
                 <div class="video-card">
-                    <div class="video-wrapper-shorts">
-                        <iframe src="https://www.youtube.com/embed/JdVbq1mwsEc" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="vidio 1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="video-info">
-                        <h3>Roksana ⚽</h3>
-                        <p id="v1-desc">Wiadomość wsparcia dla Kaji</p>
+                        <h3>Wideo 1 ⚽</h3>
+                        <p id="v1-desc">Wiadomość wsparcia</p>
                     </div>
                 </div>
 
-                <!-- Video Message 2: Wiktoria -->
+                <!-- Video 2: vedio 2 -->
                 <div class="video-card">
-                    <div class="video-wrapper-shorts">
-                        <iframe src="https://www.youtube.com/embed/KuZzNOKrPxU" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="vedio 2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3>Wideo 2 ⚽</h3>
+                        <p id="v2-desc">Wiadomość wsparcia</p>
+                    </div>
+                </div>
+
+                <!-- Video 3: Roksana Support -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="roksana support.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3>Roksana ⚽</h3>
+                        <p id="v3-desc">Wiadomość wsparcia od Roksany</p>
+                    </div>
+                </div>
+
+                <!-- Video 4: Wiktoria Support -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="wiktoria support.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <div class="video-info">
                         <h3>Wiktoria ⚽</h3>
-                        <p id="v2-desc">Wiadomość wsparcia dla Kaji</p>
+                        <p id="v4-desc">Wiadomość wsparcia od Wiktorii</p>
+                    </div>
+                </div>
+
+                <!-- Video 5: Szalona -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="Szalona.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3>Szalona ⚽</h3>
+                        <p id="v5-desc">Wiadomość wsparcia od Szalonej</p>
                     </div>
                 </div>
 
@@ -365,20 +492,26 @@
         <p id="footer-text">Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️</p>
     </footer>
 
-    <!-- Interactive Script -->
+    <!-- Multilingual Script -->
     <script>
         const translations = {
             pl: {
                 heroTitle: "Dla naszej Kapitanki ❤️",
                 heroSubtitle: "Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.",
                 heroBtn: "Wiadomości Wideo 🎥",
+                galleryBtn: "Galeria 📸",
                 letterTitle: "Dla naszej Kapitanki ❤️",
                 senderBadge: "Wiadomość od: Roksana",
                 letterFooter: "— Roksana & Cała Drużyna ❤️",
+                photosTitle: "Wspólne Chwile 📸",
+                photosDesc: "Nasza drużyna na boisku i poza nim:",
                 memoriesTitle: "Wiadomości od Drużyny 🎥",
                 memoriesDesc: "Słowa wsparcia od Twoich koleżanek z boiska:",
-                v1Desc: "Wiadomość wsparcia od Roksany",
-                v2Desc: "Wiadomość wsparcia od Wiktorii",
+                v1Desc: "Wiadomość wsparcia",
+                v2Desc: "Wiadomość wsparcia",
+                v3Desc: "Wiadomość wsparcia od Roksany",
+                v4Desc: "Wiadomość wsparcia od Wiktorii",
+                v5Desc: "Wiadomość wsparcia od Szalonej",
                 footerText: "Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️",
                 letterParagraphs: [
                     "Są chwile, w których wynik meczu przestaje mieć znaczenie. Są momenty, kiedy najważniejszy staje się człowiek. Dziś cała nasza drużyna jest myślami z naszą Kapitanką, która doznała poważnej kontuzji.",
@@ -397,13 +530,19 @@
                 heroTitle: "For Our Captain ❤️",
                 heroSubtitle: "Get well soon, Kaja! | The whole team stands with you.",
                 heroBtn: "Video Messages 🎥",
+                galleryBtn: "Gallery 📸",
                 letterTitle: "For Our Captain ❤️",
                 senderBadge: "Message from: Roksana",
                 letterFooter: "— Roksana & The Entire Team ❤️",
+                photosTitle: "Shared Memories 📸",
+                photosDesc: "Our team on and off the pitch:",
                 memoriesTitle: "Messages from the Team 🎥",
                 memoriesDesc: "Words of support from your teammates:",
-                v1Desc: "Support message from Roksana",
-                v2Desc: "Support message from Wiktoria",
+                v1Desc: "Support message",
+                v2Desc: "Support message",
+                v3Desc: "Support message from Roksana",
+                v4Desc: "Support message from Wiktoria",
+                v5Desc: "Support message from Szalona",
                 footerText: "Website made with love for Captain Kaja | 2026 ❤️",
                 letterParagraphs: [
                     "There are moments when the final score of a match ceases to matter. There are moments when the human being becomes the most important thing. Today, our entire team's thoughts are with our Captain, who suffered a serious injury.",
@@ -430,13 +569,19 @@
             document.getElementById('hero-title').innerText = data.heroTitle;
             document.getElementById('hero-subtitle').innerText = data.heroSubtitle;
             document.getElementById('hero-btn').innerText = data.heroBtn;
+            document.getElementById('gallery-btn').innerText = data.galleryBtn;
             document.getElementById('letter-title').innerText = data.letterTitle;
             document.getElementById('sender-badge').innerText = data.senderBadge;
             document.getElementById('letter-footer').innerText = data.letterFooter;
+            document.getElementById('photos-title').innerText = data.photosTitle;
+            document.getElementById('photos-desc').innerText = data.photosDesc;
             document.getElementById('memories-title').innerText = data.memoriesTitle;
             document.getElementById('memories-desc').innerText = data.memoriesDesc;
             document.getElementById('v1-desc').innerText = data.v1Desc;
             document.getElementById('v2-desc').innerText = data.v2Desc;
+            document.getElementById('v3-desc').innerText = data.v3Desc;
+            document.getElementById('v4-desc').innerText = data.v4Desc;
+            document.getElementById('v5-desc').innerText = data.v5Desc;
             document.getElementById('footer-text').innerText = data.footerText;
 
             const letterContainer = document.getElementById('letter-body');
