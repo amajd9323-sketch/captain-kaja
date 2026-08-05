@@ -61,7 +61,7 @@
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 55vh;
+            min-height: 50vh;
             background: linear-gradient(135deg, #1e293b, #0f172a);
             display: flex;
             justify-content: center;
@@ -184,7 +184,7 @@
             font-size: 1rem;
         }
 
-        /* Memories & Videos Section */
+        /* Video Messages Section */
         .memories-section {
             padding: 3rem 1rem;
             text-align: center;
@@ -204,8 +204,9 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
+            justify-content: center;
         }
 
         .video-card {
@@ -217,16 +218,16 @@
             transition: transform 0.3s ease;
         }
 
-        .video-wrapper {
+        /* Aspect ratio specifically tuned for Shorts (Vertical 9:16) */
+        .video-wrapper-shorts {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
             height: 0;
             overflow: hidden;
             background: #000;
         }
 
-        .video-wrapper iframe, 
-        .video-wrapper video {
+        .video-wrapper-shorts iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -237,12 +238,12 @@
 
         .video-info {
             padding: 1rem;
-            text-align: left;
+            text-align: center;
         }
 
         .video-info h3 {
-            color: #f8fafc;
-            font-size: 1.1rem;
+            color: #ef4444;
+            font-size: 1.15rem;
             margin-bottom: 0.3rem;
         }
 
@@ -260,7 +261,6 @@
             border-top: 1px solid #1e293b;
         }
 
-        /* Mobile Responsive Adjustments */
         @media (max-width: 600px) {
             .container {
                 padding: 1rem 0.8rem;
@@ -305,7 +305,7 @@
             <span class="badge">#CaptainKaja</span>
             <h1 id="hero-title">Dla naszej Kapitanki ❤️</h1>
             <p class="subtitle" id="hero-subtitle">Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.</p>
-            <a href="#memories" class="btn" id="hero-btn">Zobacz wspomnienia 🎥</a>
+            <a href="#messages" class="btn" id="hero-btn">Wiadomości Wideo 🎥</a>
         </div>
     </header>
 
@@ -327,36 +327,33 @@
         </div>
     </section>
 
-    <!-- Memories & Video Section -->
-    <section id="memories" class="memories-section">
+    <!-- Video Messages Section -->
+    <section id="messages" class="memories-section">
         <div class="container">
-            <h2 class="section-title" id="memories-title">Wspomnienia i Najlepsze Chwile 🎥</h2>
-            <p class="section-desc" id="memories-desc">Niektóre z najpiękniejszych momentów Kaji na boisku i z drużyną:</p>
+            <h2 class="section-title" id="memories-title">Wiadomości od Drużyny 🎥</h2>
+            <p class="section-desc" id="memories-desc">Słowa wsparcia od Twoich koleżanek z boiska:</p>
 
             <div class="video-grid">
                 
-                <!-- Video Item 1 -->
+                <!-- Video Message 1: Roksana -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <video controls poster="1.jpg" playsinline>
-                            <source src="video1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="video-wrapper-shorts">
+                        <iframe src="https://www.youtube.com/embed/JdVbq1mwsEc" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
-                        <h3 id="v1-title">Captain on the Pitch ⚽</h3>
-                        <p id="v1-desc">Niezapomniane chwile z meczów i treningów.</p>
+                        <h3>Roksana ⚽</h3>
+                        <p id="v1-desc">Wiadomość wsparcia dla Kaji</p>
                     </div>
                 </div>
 
-                <!-- Video Item 2 -->
+                <!-- Video Message 2: Wiktoria -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    <div class="video-wrapper-shorts">
+                        <iframe src="https://www.youtube.com/embed/KuZzNOKrPxU" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
-                        <h3 id="v2-title">Team Spirit & Celebration 🎉</h3>
-                        <p id="v2-desc">Razem na boisku i poza nim!</p>
+                        <h3>Wiktoria ⚽</h3>
+                        <p id="v2-desc">Wiadomość wsparcia dla Kaji</p>
                     </div>
                 </div>
 
@@ -374,16 +371,14 @@
             pl: {
                 heroTitle: "Dla naszej Kapitanki ❤️",
                 heroSubtitle: "Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.",
-                heroBtn: "Zobacz wspomnienia 🎥",
+                heroBtn: "Wiadomości Wideo 🎥",
                 letterTitle: "Dla naszej Kapitanki ❤️",
                 senderBadge: "Wiadomość od: Roksana",
                 letterFooter: "— Roksana & Cała Drużyna ❤️",
-                memoriesTitle: "Wspomnienia i Najlepsze Chwile 🎥",
-                memoriesDesc: "Niezapomniane momenty Kaji na boisku i z naszą drużyną:",
-                v1Title: "Kraj i Drużyna ⚽",
-                v1Desc: "Bramki, akcje i niezłomny duch naszej Kapitanki.",
-                v2Title: "Radość po Zwycięstwie 🎉",
-                v2Desc: "Razem w świętowaniu i w trudnych chwilach.",
+                memoriesTitle: "Wiadomości od Drużyny 🎥",
+                memoriesDesc: "Słowa wsparcia od Twoich koleżanek z boiska:",
+                v1Desc: "Wiadomość wsparcia od Roksany",
+                v2Desc: "Wiadomość wsparcia od Wiktorii",
                 footerText: "Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️",
                 letterParagraphs: [
                     "Są chwile, w których wynik meczu przestaje mieć znaczenie. Są momenty, kiedy najważniejszy staje się człowiek. Dziś cała nasza drużyna jest myślami z naszą Kapitanką, która doznała poważnej kontuzji.",
@@ -395,22 +390,20 @@
                     "Na boisku będzie nam brakowało Twojego głosu, energii i obecności. Będzie brakowało osoby, która zawsze potrafiła zmobilizować drużynę i walczyć do ostatniego gwizdka. Ale wiemy, że to tylko kwestia czasu. Bo kapitanem jest się nie tylko podczas meczu. Kapitanem jest się każdego dnia – swoją postawą, charakterem i sercem.",
                     "Życzymy Ci dużo siły, cierpliwości, wytrwałości i wiary w siebie. Nie pozwól, aby jeden trudny moment odebrał Ci marzenia, na które pracowałaś przez tyle lat. Każda łza, każdy wysiłek i każda godzina rehabilitacji będą miały swój sens. Wierzymy, że wrócisz jeszcze silniejsza – nie tylko jako piłkarka, ale również jako człowiek.",
                     "Pamiętaj, że boisko będzie na Ciebie czekało. Piłka będzie czekała. My będziemy czekać. A dzień Twojego powrotu będzie dla nas jednym z najpiękniejszych zwycięstw, niezależnie od wyniku na tablicy.",
-                    "Bo prawdziwego kapitana nie definiuje to, czy jest na murawie, lecz to, jak inspiruje innych – a Ty robisz to każdego dnia. Dziękujemy Ci za wszystko, co zrobiłeś dla naszej drużyny, i wierzymy, że to jeszcze nie koniec wspólnej historii. Czekamy na Ciebie. Wracaj do nas silna, zdrowa i z tym samym uśmiechem, który zawsze dodawał nam sił. ❤️⚽"
+                    "Bo prawdziwego kapitana nie definiuje to, czy jest na murawie, lecz to, jak inspiruje innych – a Ty robisz to każdego dnia. Dziękujemy Ci za wszystko, co zrobiłaś dla naszej drużyny, i wierzymy, że to jeszcze nie koniec wspólnej historii. Czekamy na Ciebie. Wracaj do nas silna, zdrowa i z tym samym uśmiechem, który zawsze dodawał nam sił. ❤️⚽"
                 ]
             },
             en: {
                 heroTitle: "For Our Captain ❤️",
                 heroSubtitle: "Get well soon, Kaja! | The whole team stands with you.",
-                heroBtn: "View Memories 🎥",
+                heroBtn: "Video Messages 🎥",
                 letterTitle: "For Our Captain ❤️",
                 senderBadge: "Message from: Roksana",
                 letterFooter: "— Roksana & The Entire Team ❤️",
-                memoriesTitle: "Memories & Highlights 🎥",
-                memoriesDesc: "Kaja's unforgettable moments on the pitch and with our team:",
-                v1Title: "Pitch Highlights ⚽",
-                v1Desc: "Goals, plays, and our Captain's unbreakable spirit.",
-                v2Title: "Team Celebrations 🎉",
-                v2Desc: "Together in victory and through every challenge.",
+                memoriesTitle: "Messages from the Team 🎥",
+                memoriesDesc: "Words of support from your teammates:",
+                v1Desc: "Support message from Roksana",
+                v2Desc: "Support message from Wiktoria",
                 footerText: "Website made with love for Captain Kaja | 2026 ❤️",
                 letterParagraphs: [
                     "There are moments when the final score of a match ceases to matter. There are moments when the human being becomes the most important thing. Today, our entire team's thoughts are with our Captain, who suffered a serious injury.",
@@ -442,9 +435,7 @@
             document.getElementById('letter-footer').innerText = data.letterFooter;
             document.getElementById('memories-title').innerText = data.memoriesTitle;
             document.getElementById('memories-desc').innerText = data.memoriesDesc;
-            document.getElementById('v1-title').innerText = data.v1Title;
             document.getElementById('v1-desc').innerText = data.v1Desc;
-            document.getElementById('v2-title').innerText = data.v2Title;
             document.getElementById('v2-desc').innerText = data.v2Desc;
             document.getElementById('footer-text').innerText = data.footerText;
 
