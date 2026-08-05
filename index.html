@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wracaj do zdrowia, Kapitanie Kaja!</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.7;
+        }
+
+        /* Language Switcher Bar */
+        .lang-bar {
+            background: #020617;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid #1e293b;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: #ef4444;
+            color: #ffffff;
+            border-color: #ef4444;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 60vh;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 3px solid #ef4444;
+        }
+
+        .kaja-img {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ef4444;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .kaja-img:hover {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            background: #ef4444;
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin: 1rem 0 0.5rem;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Dedicated Letter Section */
+        .roksana-letter-section {
+            background-color: #1e293b;
+            padding: 4rem 1rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .letter-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-left: 5px solid #ef4444;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .letter-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 1rem;
+        }
+
+        .letter-title {
+            color: #ef4444;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .sender-badge {
+            background: #334155;
+            color: #f8fafc;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .letter-content p {
+            color: #cbd5e1;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .letter-footer {
+            margin-top: 2rem;
+            text-align: right;
+            font-weight: bold;
+            color: #ef4444;
+            font-size: 1.1rem;
+        }
+
+        /* Memories & Videos Section */
+        .memories-section {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .section-desc {
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe, 
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+            text-align: left;
+        }
+
+        .video-info h3 {
+            color: #f8fafc;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .video-info p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #020617;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Navigation Bar -->
+    <nav class="lang-bar">
+        <button class="lang-btn active" onclick="switchLanguage('pl')">🇵🇱 Polski</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 English</button>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <img src="1.jpg" alt="Captain Kaja" class="kaja-img" onerror="this.src='1.jpeg'">
+            <br>
+            <span class="badge">#CaptainKaja</span>
+            <h1 id="hero-title">Dla naszej Kapitanki ❤️</h1>
+            <p class="subtitle" id="hero-subtitle">Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.</p>
+            <a href="#memories" class="btn" id="hero-btn">Zobacz wspomnienia 🎥</a>
+        </div>
+    </header>
+
+    <!-- Roksana's Special Letter Section -->
+    <section id="letter" class="roksana-letter-section">
+        <div class="container">
+            <div class="letter-card">
+                <div class="letter-header">
+                    <span class="letter-title" id="letter-title">Dla naszej Kapitanki ❤️</span>
+                    <span class="sender-badge" id="sender-badge">Wiadomość od: Roksana</span>
+                </div>
+                <div class="letter-content" id="letter-body">
+                    <!-- Dynamic Text via JS -->
+                </div>
+                <div class="letter-footer" id="letter-footer">
+                    — Roksana & Cała Drużyna ❤️
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories & Video Section -->
+    <section id="memories" class="memories-section">
+        <div class="container">
+            <h2 class="section-title" id="memories-title">Wspomnienia i Najlepsze Chwile 🎥</h2>
+            <p class="section-desc" id="memories-desc">Niektóre z najpiękniejszych لحظات Kaji na boisku i z drużyną:</p>
+
+            <div class="video-grid">
+                
+                <!-- Video Item 1 (Example: Local MP4 Video) -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <!-- ضع اسم ملف الفيديو الخاص بك هنا مثل video1.mp4 -->
+                        <video controls poster="1.jpg">
+                            <source src="video1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3 id="v1-title">Captain on the Pitch ⚽</h3>
+                        <p id="v1-desc">Niezapomniane chwile z meczów i treningów.</p>
+                    </div>
+                </div>
+
+                <!-- Video Item 2 (Example: YouTube Embed or Local Video) -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <!-- يمكنك وضع رابط يوتيوب هنا بدلاً من فيديو محلي -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 id="v2-title">Team Spirit & Celebration 🎉</h3>
+                        <p id="v2-desc">Razem na boisku i poza nim!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-text">Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        const translations = {
+            pl: {
+                heroTitle: "Dla naszej Kapitanki ❤️",
+                heroSubtitle: "Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.",
+                heroBtn: "Zobacz wspomnienia 🎥",
+                letterTitle: "Dla naszej Kapitanki ❤️",
+                senderBadge: "Wiadomość od: Roksana",
+                letterFooter: "— Roksana & Cała Drużyna ❤️",
+                memoriesTitle: "Wspomnienia i Najlepsze Chwile 🎥",
+                memoriesDesc: "Niezapomniane momenty Kaji na boisku i z naszą drużyną:",
+                v1Title: "Kraj i Drużyna ⚽",
+                v1Desc: "Bramki, akcje i niezłomny duch naszej Kapitanki.",
+                v2Title: "Radość po Zwycięstwie 🎉",
+                v2Desc: "Razem w świętowaniu i w trudnych chwilach.",
+                footerText: "Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️",
+                letterParagraphs: [
+                    "Są chwile, w których wynik meczu przestaje mieć znaczenie. Są momenty, kiedy najważniejszy staje się człowiek. Dziś cała nasza drużyna jest myślami z naszą Kapitanką, która doznała poważnej kontuzji.",
+                    "Twoja determinacja, waleczność i serce do gry od zawsze były dla nas inspiracją. Każdy trening i każdy mecz pokazywały, jak wiele znaczy dla Ciebie ta drużyna. Nie byłaś dla nas tylko zawodniczką z opaską na ramieniu – byłaś osobą, która motywowała nas do walki, dodawała odwagi w trudnych momentach i przypominała, że nigdy nie wolno się poddawać. Swoją postawą udowadniałaś, że prawdziwy lider nie prowadzi drużyny słowami, lecz własnym przykładem.",
+                    "Teraz nadszedł czas, abyśmy to my byli Twoim wsparciem.",
+                    "Wiemy, że przed Tobą trudna droga – pełna rehabilitacji, cierpliwości i ciężkiej pracy. Będą dni lepsze i gorsze, chwile zwątpienia, zmęczenia i tęsknoty za boiskiem. To zupełnie naturalne. Pamiętaj jednak, że każda nawet najmniejsza poprawa jest krokiem bliżej powrotu. Każdy dzień walki przybliża Cię do chwili, w której znów poczujesz zapach murawy, usłyszysz pierwszy gwizdek i założysz korki z uśmiechem na twarzy.",
+                    "Jeśli ktoś potrafi walczyć do końca, to właśnie Ty. Wielokrotnie pokazywałaś nam, że przeciwności są po to, by je pokonywać. Ta kontuzja nie odbiera Ci siły, charakteru ani tego, kim jesteś. To tylko rozdział w Twojej historii, a nie jej zakończenie.",
+                    "Pamiętaj, że nie jesteś w tym sama. Cała drużyna, trenerzy i wszyscy, którzy Ci kibicują, stoją za Tobą. Bo drużyna to nie tylko wspólne zwycięstwa na boisku – to także wsparcie w najtrudniejszych chwilach. Tak jak zawsze mogłyśmy liczyć na Ciebie, tak dziś Ty możesz liczyć na nas. Będziemy przy Tobie na każdym etapie tej drogi – będziemy cieszyć się z każdego postępu, dodawać otuchy w słabszych chwilach i wierzyć w Ciebie nawet wtedy, gdy Tobie samej będzie trudno w to uwierzyć.",
+                    "Na boisku będzie nam brakowało Twojego głosu, energii i obecności. Będzie brakowało osoby, która zawsze potrafiła zmobilizować drużynę i walczyć do ostatniego gwizdka. Ale wiemy, że to tylko kwestia czasu. Bo kapitanem jest się nie tylko podczas meczu. Kapitanem jest się każdego dnia – swoją postawą, charakterem i sercem.",
+                    "Życzymy Ci dużo siły, cierpliwości, wytrwałości i wiary w siebie. Nie pozwól, aby jeden trudny moment odebrał Ci marzenia, na które pracowałaś przez tyle lat. Każda łza, każdy wysiłek i każda godzina rehabilitacji będą miały swój sens. Wierzymy, że wrócisz jeszcze silniejsza – nie tylko jako piłkarka, ale również jako człowiek.",
+                    "Pamiętaj, że boisko będzie na Ciebie czekało. Piłka będzie czekała. My będziemy czekać. A dzień Twojego powrotu będzie dla nas jednym z najpiękniejszych zwycięstw, niezależnie od wyniku na tablicy.",
+                    "Bo prawdziwego kapitana nie definiuje to, czy jest na murawie, lecz to, jak inspiruje innych – a Ty robisz to każdego dnia. Dziękujemy Ci za wszystko, co zrobiłaś dla naszej drużyny, i wierzymy, że to jeszcze nie koniec wspólnej historii. Czekamy na Ciebie. Wracaj do nas silna, zdrowa i z tym samym uśmiechem, który zawsze dodawał nam sił. ❤️⚽"
+                ]
+            },
+            en: {
+                heroTitle: "For Our Captain ❤️",
+                heroSubtitle: "Get well soon, Kaja! | The whole team stands with you.",
+                heroBtn: "View Memories 🎥",
+                letterTitle: "For Our Captain ❤️",
+                senderBadge: "Message from: Roksana",
+                letterFooter: "— Roksana & The Entire Team ❤️",
+                memoriesTitle: "Memories & Highlights 🎥",
+                memoriesDesc: "Kaja's unforgettable moments on the pitch and with our team:",
+                v1Title: "Pitch Highlights ⚽",
+                v1Desc: "Goals, plays, and our Captain's unbreakable spirit.",
+                v2Title: "Team Celebrations 🎉",
+                v2Desc: "Together in victory and through every challenge.",
+                footerText: "Website made with love for Captain Kaja | 2026 ❤️",
+                letterParagraphs: [
+                    "There are moments when the final score of a match ceases to matter. There are moments when the human being becomes the most important thing. Today, our entire team's thoughts are with our Captain, who suffered a serious injury.",
+                    "Your determination, fight, and heart for the game have always been an inspiration to us. Every training session and every match showed how much this team means to you. You weren't just a player wearing an armband to us – you were the person who motivated us to fight, gave us courage in difficult times, and reminded us never to give up. Through your attitude, you proved that a true leader doesn't lead with words, but by example.",
+                    "Now it is our turn to be your support.",
+                    "We know you have a tough road ahead – full of rehabilitation, patience, and hard work. There will be good days and bad days, moments of doubt, fatigue, and longing for the pitch. That is completely natural. But remember, every single improvement, no matter how small, is a step closer to your return. Every day of fighting brings you closer to feeling the smell of the grass again, hearing the first whistle, and putting on your boots with a smile.",
+                    "If anyone can fight to the end, it's you. You've shown us time and again that obstacles exist to be overcome. This injury does not take away your strength, your character, or who you are. This is just a chapter in your story, not the end of it.",
+                    "Remember that you are not alone in this. The whole team, coaches, and everyone cheering for you stand behind you. Because a team isn't just about winning together on the pitch – it's about support in the hardest moments. Just as we could always count on you, today you can count on us. We will be right by your side through every step of this journey.",
+                    "We will miss your voice, your energy, and your presence on the pitch. We will miss the person who always knew how to rally the team and fight until the final whistle. But we know it's only a matter of time. Because being a captain isn't just during a match. You are a captain every single day – through your attitude, character, and heart.",
+                    "We wish you lots of strength, patience, perseverance, and faith in yourself. Don't let one difficult moment take away the dreams you've worked so hard for over many years. Every tear, every effort, and every hour of rehab will have its purpose. We believe you will come back even stronger – not only as a footballer, but as a person.",
+                    "Remember that the pitch will be waiting for you. The ball will be waiting. We will be waiting. And the day of your return will be one of our greatest victories, regardless of the scoreboard.",
+                    "Because a true captain isn't defined by being on the turf, but by how she inspires others – and you do that every day. Thank you for everything you've done for our team, and we believe this is not the end of our story. We are waiting for you. Come back to us strong, healthy, and with the same smile that always gave us strength. ❤️⚽"
+                ]
+            }
+        };
+
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if(lang === 'pl') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            else document.querySelectorAll('.lang-btn')[1].classList.add('active');
+
+            const data = translations[lang];
+
+            document.getElementById('hero-title').innerText = data.heroTitle;
+            document.getElementById('hero-subtitle').innerText = data.heroSubtitle;
+            document.getElementById('hero-btn').innerText = data.heroBtn;
+            document.getElementById('letter-title').innerText = data.letterTitle;
+            document.getElementById('sender-badge').innerText = data.senderBadge;
+            document.getElementById('letter-footer').innerText = data.letterFooter;
+            document.getElementById('memories-title').innerText = data.memoriesTitle;
+            document.getElementById('memories-desc').innerText = data.memoriesDesc;
+            document.getElementById('v1-title').innerText = data.v1Title;
+            document.getElementById('v1-desc').innerText = data.v1Desc;
+            document.getElementById('v2-title').innerText = data.v2Title;
+            document.getElementById('v2-desc').innerText = data.v2Desc;
+            document.getElementById('footer-text').innerText = data.footerText;
+
+            const letterContainer = document.getElementById('letter-body');
+            letterContainer.innerHTML = '';
+            data.letterParagraphs.forEach(text => {
+                const p = document.createElement('p');
+                p.innerText = text;
+                letterContainer.appendChild(p);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLanguage('pl');
+        });
+    </script>
+</body>
+</html>
