@@ -276,6 +276,107 @@
             font-size: 1rem;
         }
 
+        /* Collapsible Text Messages Section */
+        .text-messages-section {
+            padding: 3rem 1rem;
+            background: #0f172a;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .msg-accordion {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .msg-accordion:hover {
+            border-color: #ef4444;
+        }
+
+        .msg-header {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .msg-header span.author {
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .msg-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: #94a3b8;
+        }
+
+        .msg-accordion.open .msg-icon {
+            transform: rotate(180deg);
+            color: #ef4444;
+        }
+
+        .msg-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.4s ease;
+            background: #090d16;
+            padding: 0 1.5rem;
+        }
+
+        .msg-accordion.open .msg-body {
+            max-height: 1200px;
+            padding: 1.5rem;
+            border-top: 1px solid #334155;
+        }
+
+        .msg-body p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+            white-space: pre-line;
+        }
+
+        .msg-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-img-preview {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 12px;
+            border: 2px solid #ef4444;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto 1.2rem auto;
+        }
+
+        .card-img-preview:hover {
+            transform: scale(1.02);
+        }
+
         /* Gallery Section */
         .gallery-section {
             padding: 3rem 1rem;
@@ -353,7 +454,7 @@
             color: #ef4444;
         }
 
-        /* Video Section */
+        /* Modernized & Compact Video Section */
         .memories-section {
             padding: 3rem 1rem;
             text-align: center;
@@ -374,32 +475,34 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 240px));
+            gap: 1.2rem;
             justify-content: center;
         }
 
         .video-card {
-            background: #0f172a;
+            background-color: #0f172a;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #334155;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
         .video-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             border-color: #ef4444;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.25);
         }
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 177.77%; /* Aspect Ratio 9:16 for Shorts */
-            background: #000;
+            aspect-ratio: 9 / 16;
+            max-height: 380px;
+            background-color: #000;
         }
 
         .video-wrapper iframe {
@@ -408,36 +511,51 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border: 0;
+            border: none;
         }
 
         .video-info {
-            padding: 1rem;
+            padding: 12px;
             text-align: center;
-            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: linear-gradient(180deg, rgba(15,23,42,0.8) 0%, rgba(2,6,23,1) 100%);
+            flex-grow: 1;
         }
 
         .video-info h3 {
-            color: #ef4444;
-            font-size: 1.15rem;
-            margin-bottom: 0.3rem;
+            color: #f87171;
+            font-size: 1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
 
         .video-info p {
             color: #94a3b8;
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin: 0;
         }
 
         .yt-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 8px;
             color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 600;
             text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: bold;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .yt-link:hover {
-            text-decoration: underline;
+            color: #7dd3fc;
+            transform: translateX(2px);
         }
 
         /* Back to Top Button */
@@ -488,6 +606,15 @@
                 height: 130px;
             }
 
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .video-wrapper {
+                max-height: 300px;
+            }
+
             .letter-card {
                 padding: 1.2rem 1rem;
             }
@@ -495,6 +622,11 @@
             .gallery-grid {
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
                 gap: 0.8rem;
+            }
+
+            .msg-header {
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -517,8 +649,8 @@
             <p class="subtitle" id="hero-subtitle">Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.</p>
             
             <div class="btn-group">
-                <a href="#messages" class="btn" id="hero-btn">Wiadomości Wideo 🎥</a>
-                <a href="#gallery" class="btn btn-secondary" id="gallery-btn">Galeria 📸</a>
+                <a href="#text-messages" class="btn" id="hero-text-btn">Słowa Wsparcia 💬</a>
+                <a href="#messages" class="btn btn-secondary" id="hero-btn">Wiadomości Wideo 🎥</a>
             </div>
 
             <!-- Cheer / Heart Counter Box -->
@@ -547,6 +679,54 @@
         </div>
     </section>
 
+    <!-- Interactive Expandable Text Messages Section -->
+    <section id="text-messages" class="text-messages-section fade-in-element">
+        <div class="container">
+            <h2 class="section-title" id="text-sec-title" style="text-align: center;">Wiadomości Tekstowe 💬</h2>
+            <p class="section-desc" id="text-sec-desc" style="text-align: center;">Kliknij na imię, aby przeczytać wiadomość:</p>
+
+            <div class="messages-container">
+                
+                <!-- Message 1: Grecia -->
+                <div class="msg-accordion">
+                    <button class="msg-header" onclick="toggleAccordion(this)">
+                        <span class="author">💌 Grecia</span>
+                        <span class="msg-icon">▼</span>
+                    </button>
+                    <div class="msg-body" id="msg-grecia">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- Message 2: Oliwia -->
+                <div class="msg-accordion">
+                    <button class="msg-header" onclick="toggleAccordion(this)">
+                        <span class="author">💌 Oliwia</span>
+                        <span class="msg-icon">▼</span>
+                    </button>
+                    <div class="msg-body" id="msg-oliwia">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- Message 3: Patrycja (Image + Interactive Text) -->
+                <div class="msg-accordion">
+                    <button class="msg-header" onclick="toggleAccordion(this)">
+                        <span class="author">💌 Patrycja</span>
+                        <span class="msg-icon">▼</span>
+                    </button>
+                    <div class="msg-body">
+                        <img src="Patrycja support .jpeg" alt="Patrycja Support" class="card-img-preview" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='Patrycja support .jpg';">
+                        <div id="msg-patrycja">
+                            <!-- Content rendered via JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Photo Gallery Section -->
     <section id="gallery" class="gallery-section fade-in-element">
         <div class="container">
@@ -566,10 +746,10 @@
         </div>
     </section>
 
-    <!-- Video Messages Section -->
+    <!-- Compact Video Messages Section -->
     <section id="messages" class="memories-section fade-in-element">
         <div class="container">
-            <h2 class="section-title" id="memories-title">Wiadomości od Drużyny 🎥</h2>
+            <h2 class="section-title" id="memories-title">Wiadomości Wideo 🎥</h2>
             <p class="section-desc" id="memories-desc">Słowa wsparcia od Twoich koleżanek z boiska:</p>
 
             <div class="video-grid">
@@ -577,7 +757,7 @@
                 <!-- Video 1: Our Captain 2 -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/ZkTcMfsuJSo" title="Our Captain 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/ZkTcMfsuJSo" title="Our Captain 2" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Our Captain 2 ⚽</h3>
@@ -589,7 +769,7 @@
                 <!-- Video 2: Our Captain -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/cBEyaUOho5Q" title="Our Captain" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/cBEyaUOho5Q" title="Our Captain" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Our Captain ⚽</h3>
@@ -601,7 +781,7 @@
                 <!-- Video 3: Szalona Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/tEHO9dkgxbM" title="Szalona Support" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/tEHO9dkgxbM" title="Szalona Support" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Szalona Support ⚽</h3>
@@ -613,7 +793,7 @@
                 <!-- Video 4: Wiktoria Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/KuZzNOKrPxU" title="Wiktoria Support" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/KuZzNOKrPxU" title="Wiktoria Support" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Wiktoria Support ⚽</h3>
@@ -625,12 +805,60 @@
                 <!-- Video 5: Roksana Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/JdVbq1mwsEc" title="Roksana Support" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/JdVbq1mwsEc" title="Roksana Support" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Roksana Support ⚽</h3>
                         <p id="v5-desc">Wiadomość wsparcia od Roksany</p>
                         <a href="https://youtube.com/shorts/JdVbq1mwsEc?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                    </div>
+                </div>
+
+                <!-- Video 6: Coach Rafal -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/pdTNZFQxXfs" title="Coach Rafal" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Coach Rafal ⚽</h3>
+                        <p id="v6-desc">Wiadomość wsparcia od Trenera Rafała</p>
+                        <a href="https://youtu.be/pdTNZFQxXfs" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                    </div>
+                </div>
+
+                <!-- Video 7: Jagoda Support -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/KN4jrSHPpDc" title="Jagoda Support" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Jagoda Support ⚽</h3>
+                        <p id="v7-desc">Wiadomość wsparcia od Jagody</p>
+                        <a href="https://youtu.be/KN4jrSHPpDc" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                    </div>
+                </div>
+
+                <!-- Video 8: Fatima Support -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/3g43y6Kij-s" title="Fatima Support" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Fatima Support ⚽</h3>
+                        <p id="v8-desc">Wiadomość wsparcia od Fatimy</p>
+                        <a href="https://youtu.be/3g43y6Kij-s" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                    </div>
+                </div>
+
+                <!-- Video 9: Paulina Support -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/dxjlS3mrPZQ" title="Paulina Support" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Paulina Support ⚽</h3>
+                        <p id="v9-desc">Wiadomość wsparcia od Pauliny</p>
+                        <a href="https://youtube.com/shorts/dxjlS3mrPZQ?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
@@ -660,23 +888,42 @@
             pl: {
                 heroTitle: "Dla naszej Kapitanki ❤️",
                 heroSubtitle: "Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.",
+                heroTextBtn: "Słowa Wsparcia 💬",
                 heroBtn: "Wiadomości Wideo 🎥",
-                galleryBtn: "Galeria 📸",
                 cheerBtn: "Wyślij Wsparcie ❤️",
                 cheerCountTemplate: "Wysłano {count} serc wsparcia!",
                 letterTitle: "Dla naszej Kapitanki ❤️",
                 senderBadge: "Wiadomość od: Roksana",
                 letterFooter: "— Roksana & Cała Drużyna ❤️",
+                textSecTitle: "Wiadomości Tekstowe 💬",
+                textSecDesc: "Kliknij na imię, aby przeczytać wiadomość:",
                 photosTitle: "Wspólne Chwile 📸",
                 photosDesc: "Nasza drużyna na boisku i poza nim:",
-                memoriesTitle: "Wiadomości od Drużyny 🎥",
+                memoriesTitle: "Wiadomości Wideo 🎥",
                 memoriesDesc: "Słowa wsparcia od Twoich koleżanek z boiska:",
                 v1Desc: "Wiadomość wsparcia",
                 v2Desc: "Wiadomość wsparcia",
                 v3Desc: "Wiadomość wsparcia od Szalonej",
                 v4Desc: "Wiadomość wsparcia od Wiktorii",
                 v5Desc: "Wiadomość wsparcia od Roksany",
+                v6Desc: "Wiadomość wsparcia od Trenera Rafała",
+                v7Desc: "Wiadomość wsparcia od Jagody",
+                v8Desc: "Wiadomość wsparcia od Fatimy",
+                v9Desc: "Wiadomość wsparcia od Pauliny",
                 footerText: "Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️",
+                greciaMsg: [
+                    "Nie ma słów, które mogłyby opisać ten ból i rozczarowanie, ale pamiętaj, że nie jesteś z tym sama. Kontuzja to tylko przystanek na Twojej drodze, a nie jej koniec.",
+                    "Wiem, że teraz jest Ci ciężko i że perspektywa roku bez gry wydaje się wiecznością. Ale znam Cię i wiem, jak silną jesteś osobą. Ten rok minie szybciej, niż myślisz, a Ty wrócisz na boisko jeszcze mocniejsza - nie tylko fizycznie, ale też psychicznie.",
+                    "Będzie nam Ciebie bardzo brakowało na każdym treningu i meczu, ale cały czas jesteś częścią naszej drużyny. Będziemy Ci kibicować na każdym etapie rehabilitacji i czekać na dzień, w którym znów założysz korki i wybiegniesz z nami na murawę.",
+                    "Nie poddawaj się, nawet gdy będą gorsze dni. Każdy mały krok będzie przybliżał Cię do powrotu. Wierzę, że jeszcze nieraz pokażesz wszystkim, jak wielkie masz serce do walki.",
+                    "Trzymaj się i pamiętaj to nie koniec, to początek Twojego powrotu. Wrócisz silniejsza niż kiedykolwiek. ❣️❣️"
+                ],
+                oliwiaMsg: [
+                    "Wiem, że teraz nie jest łatwo, ale pamiętaj, że jesteśmy z Tobą i mocno w Ciebie wierzymy. Ta kontuzja to tylko chwilowa przerwa a nie koniec. Odpoczywaj, dbaj o siebie i wracaj do nas, kiedy będziesz gotowa. Cała drużyna czeka! ❤️💪"
+                ],
+                patrycjaMsg: [
+                    "Ahoj kapitanie! 🫡⚽\nNóżka szybko wyzdrowieje a wtedy boisko oszaleje! 🥅\nGłowa do góry bo jeszcze będziemy skakać jak kangury! 🦘\nStrzelecki był tuż tuż, ale bedzie musiał poczekać noooo cóż 🤷‍♀️🩷 Kuruj się mamita!"
+                ],
                 letterParagraphs: [
                     "Są chwile, w których wynik meczu przestaje mieć znaczenie. Są momenty, kiedy najważniejszy staje się człowiek. Dziś cała nasza drużyna jest myślami z naszą Kapitanką, która doznała poważnej kontuzji.",
                     "Twoja determinacja, waleczność i serce do gry od zawsze były dla nas inspiracją. Każdy trening i każdy mecz pokazywały, jak wiele znaczy dla Ciebie ta drużyna. Nie byłaś dla nas tylko zawodniczką z opaską na ramieniu – byłaś osobą, która motywowała nas do walki, dodawała odwagi w trudnych momentach i przypominała, że nigdy nie wolno się poddawać. Swoją postawą udowadniałaś, że prawdziwy lider nie prowadzi drużyny słowami, lecz własnym przykładem.",
@@ -693,23 +940,42 @@
             en: {
                 heroTitle: "For Our Captain ❤️",
                 heroSubtitle: "Get well soon, Kaja! | The whole team stands with you.",
+                heroTextBtn: "Words of Support 💬",
                 heroBtn: "Video Messages 🎥",
-                galleryBtn: "Gallery 📸",
                 cheerBtn: "Send Support ❤️",
                 cheerCountTemplate: "Sent {count} hearts of support!",
                 letterTitle: "For Our Captain ❤️",
                 senderBadge: "Message from: Roksana",
                 letterFooter: "— Roksana & The Entire Team ❤️",
+                textSecTitle: "Text Messages 💬",
+                textSecDesc: "Click on a name to read the message:",
                 photosTitle: "Shared Memories 📸",
                 photosDesc: "Our team on and off the pitch:",
-                memoriesTitle: "Messages from the Team 🎥",
+                memoriesTitle: "Video Messages 🎥",
                 memoriesDesc: "Words of support from your teammates:",
                 v1Desc: "Support message",
                 v2Desc: "Support message",
                 v3Desc: "Support message from Szalona",
                 v4Desc: "Support message from Wiktoria",
                 v5Desc: "Support message from Roksana",
+                v6Desc: "Support message from Coach Rafal",
+                v7Desc: "Support message from Jagoda",
+                v8Desc: "Support message from Fatima",
+                v9Desc: "Support message from Paulina",
                 footerText: "Website made with love for Captain Kaja | 2026 ❤️",
+                greciaMsg: [
+                    "There are no words that could describe this pain and disappointment, but remember that you are not alone in this. An injury is just a stop on your path, not the end of it.",
+                    "I know it's hard for you right now and that the prospect of a year without playing feels like an eternity. But I know you and I know how strong of a person you are. This year will pass faster than you think, and you will return to the pitch even stronger - not only physically, but mentally too.",
+                    "We will miss you so much at every training session and match, but you are still a full part of our team. We will be cheering for you at every stage of rehabilitation and waiting for the day when you put on your boots and step onto the pitch with us again.",
+                    "Don't give up, even when there are worse days. Every small step brings you closer to your comeback. I believe you will show everyone more than once how big of a fighting heart you have.",
+                    "Hang in there and remember: this is not the end, it's the beginning of your comeback. You will come back stronger than ever. ❣️❣️"
+                ],
+                oliwiaMsg: [
+                    "I know it's not easy right now, but remember that we are with you and we believe in you deeply. This injury is just a temporary break, not the end. Rest, take care of yourself, and come back to us when you're ready. The whole team is waiting! ❤️💪"
+                ],
+                patrycjaMsg: [
+                    "Ahoy captain! 🫡⚽\nYour leg will heal quickly, and then the pitch will go wild! 🥅\nHeads up, because we'll still be jumping like kangaroos! 🦘\nThe top scorer title was right around the corner, but it'll have to wait... oh well! 🤷‍♀️🩷 Get well soon, mamita!"
+                ],
                 letterParagraphs: [
                     "There are moments when the final score of a match ceases to matter. There are moments when the human being becomes the most important thing. Today, our entire team's thoughts are with our Captain, who suffered a serious injury.",
                     "Your determination, fight, and heart for the game have always been an inspiration to us. Every training session and every match showed how much this team means to you. You weren't just a player wearing an armband to us – you were the person who motivated us to fight, gave us courage in difficult times, and reminded us never to give up. Through your attitude, you proved that a true leader doesn't lead with words, but by example.",
@@ -724,6 +990,11 @@
                 ]
             }
         };
+
+        function toggleAccordion(buttonElement) {
+            const accordion = buttonElement.parentElement;
+            accordion.classList.toggle('open');
+        }
 
         function updateCheerText() {
             const template = translations[currentLanguage].cheerCountTemplate;
@@ -758,12 +1029,14 @@
 
             document.getElementById('hero-title').innerText = data.heroTitle;
             document.getElementById('hero-subtitle').innerText = data.heroSubtitle;
+            document.getElementById('hero-text-btn').innerText = data.heroTextBtn;
             document.getElementById('hero-btn').innerText = data.heroBtn;
-            document.getElementById('gallery-btn').innerText = data.galleryBtn;
             document.querySelector('.cheer-btn').innerText = data.cheerBtn;
             document.getElementById('letter-title').innerText = data.letterTitle;
             document.getElementById('sender-badge').innerText = data.senderBadge;
             document.getElementById('letter-footer').innerText = data.letterFooter;
+            document.getElementById('text-sec-title').innerText = data.textSecTitle;
+            document.getElementById('text-sec-desc').innerText = data.textSecDesc;
             document.getElementById('photos-title').innerText = data.photosTitle;
             document.getElementById('photos-desc').innerText = data.photosDesc;
             document.getElementById('memories-title').innerText = data.memoriesTitle;
@@ -773,16 +1046,48 @@
             document.getElementById('v3-desc').innerText = data.v3Desc;
             document.getElementById('v4-desc').innerText = data.v4Desc;
             document.getElementById('v5-desc').innerText = data.v5Desc;
+            document.getElementById('v6-desc').innerText = data.v6Desc;
+            document.getElementById('v7-desc').innerText = data.v7Desc;
+            document.getElementById('v8-desc').innerText = data.v8Desc;
+            document.getElementById('v9-desc').innerText = data.v9Desc;
             document.getElementById('footer-text').innerText = data.footerText;
 
             updateCheerText();
 
+            // Render Main Letter Body
             const letterContainer = document.getElementById('letter-body');
             letterContainer.innerHTML = '';
             data.letterParagraphs.forEach(text => {
                 const p = document.createElement('p');
                 p.innerText = text;
                 letterContainer.appendChild(p);
+            });
+
+            // Render Grecia Message
+            const greciaContainer = document.getElementById('msg-grecia');
+            greciaContainer.innerHTML = '';
+            data.greciaMsg.forEach(text => {
+                const p = document.createElement('p');
+                p.innerText = text;
+                greciaContainer.appendChild(p);
+            });
+
+            // Render Oliwia Message
+            const oliwiaContainer = document.getElementById('msg-oliwia');
+            oliwiaContainer.innerHTML = '';
+            data.oliwiaMsg.forEach(text => {
+                const p = document.createElement('p');
+                p.innerText = text;
+                oliwiaContainer.appendChild(p);
+            });
+
+            // Render Patrycja Message
+            const patrycjaContainer = document.getElementById('msg-patrycja');
+            patrycjaContainer.innerHTML = '';
+            data.patrycjaMsg.forEach(text => {
+                const p = document.createElement('p');
+                p.innerText = text;
+                patrycjaContainer.appendChild(p);
             });
         }
 
