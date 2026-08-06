@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeskanuj i wesprzyj Kapitan Kaję!</title>
+    <meta name="description" content="Zeskanuj kod QR, aby przejść do strony wsparcia dla Kapitan Kai.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .lang-controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: #ef4444;
+            color: #ffffff;
+            border-color: #ef4444;
+        }
+
+        .lang-btn:focus-visible,
+        .btn:focus-visible,
+        .btn-secondary:focus-visible {
+            outline: 3px solid #f87171;
+            outline-offset: 3px;
+        }
+
+        .badge {
+            background: #ef4444;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            max-width: 500px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            max-width: 420px;
+        }
+
+        .qr-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 4px solid #ef4444;
+            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.35);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-card img {
+            display: block;
+            width: 280px;
+            height: 280px;
+            max-width: 65vw;
+            max-height: 65vw;
+        }
+
+        .url-text {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 0.7rem 1.2rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin-bottom: 1.8rem;
+            max-width: 420px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 0.75rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #334155;
+            color: #f8fafc;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            color: #64748b;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* Clean print output: just the card, no dark background or buttons */
+        @media print {
+            .lang-controls,
+            .btn-group,
+            footer {
+                display: none;
+            }
+
+            body {
+                background: #ffffff;
+                color: #0f172a;
+                min-height: auto;
+            }
+
+            .badge {
+                background: #ef4444;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .subtitle {
+                color: #334155;
+            }
+
+            .qr-card {
+                box-shadow: none;
+                border: 3px solid #ef4444;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .url-text {
+                background: #f1f5f9;
+                border: 1px solid #cbd5e1;
+                color: #334155;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-controls" role="group" aria-label="Wybór języka">
+        <button class="lang-btn active" data-lang="pl" onclick="switchLanguage('pl')" aria-pressed="true">🇵🇱</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" aria-pressed="false">🇬🇧</button>
+    </div>
+
+    <span class="badge">#CaptainKaja</span>
+    <h1 id="title">Zeskanuj i wesprzyj Kapitan Kaję! ❤️</h1>
+    <p class="subtitle" id="subtitle">Zeskanuj kod telefonem, aby przejść do strony z wiadomościami wsparcia od całej drużyny.</p>
+
+    <div class="qr-card">
+        <img src="data:image/png;base64,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" alt="Kod QR prowadzący do strony wsparcia Kapitan Kai" width="280" height="280">
+    </div>
+
+    <p class="url-text" id="url-text">https://amajd9323-sketch.github.io/captain-kaja/</p>
+
+    <div class="btn-group">
+        <a href="https://amajd9323-sketch.github.io/captain-kaja/" class="btn" id="open-btn">Otwórz stronę 🔗</a>
+        <button class="btn btn-secondary" onclick="window.print()" id="print-btn">Drukuj 🖨️</button>
+    </div>
+
+    <footer id="footer-text">Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️</footer>
+
+    <script>
+        const translations = {
+            pl: {
+                title: "Zeskanuj i wesprzyj Kapitan Kaję! ❤️",
+                subtitle: "Zeskanuj kod telefonem, aby przejść do strony z wiadomościami wsparcia od całej drużyny.",
+                openBtn: "Otwórz stronę 🔗",
+                printBtn: "Drukuj 🖨️",
+                footerText: "Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️"
+            },
+            en: {
+                title: "Scan to support Captain Kaja! ❤️",
+                subtitle: "Scan the code with your phone to see support messages from the whole team.",
+                openBtn: "Open page 🔗",
+                printBtn: "Print 🖨️",
+                footerText: "Website made with love for Captain Kaja | 2026 ❤️"
+            }
+        };
+
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const active = btn.getAttribute('data-lang') === lang;
+                btn.classList.toggle('active', active);
+                btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+
+            const data = translations[lang];
+            document.documentElement.lang = lang;
+            document.getElementById('title').innerText = data.title;
+            document.getElementById('subtitle').innerText = data.subtitle;
+            document.getElementById('open-btn').innerText = data.openBtn;
+            document.getElementById('print-btn').innerText = data.printBtn;
+            document.getElementById('footer-text').innerText = data.footerText;
+
+            localStorage.setItem('kaja_lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('kaja_lang') || 'pl';
+            switchLanguage(saved);
+        });
+    </script>
+</body>
+</html>
