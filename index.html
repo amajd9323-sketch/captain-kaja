@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wracaj do zdrowia, Kapitanie Kaja!</title>
-    
+
+    <!-- SEO / Social sharing -->
+    <meta name="description" content="Strona wsparcia dla naszej Kapitanki Kai — wiadomości, wspomnienia i dopingujące filmy od całej drużyny JAJNIKI GRUDZIĄDZ.">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Wracaj do zdrowia, Kapitanie Kaja! ❤️">
+    <meta property="og:description" content="Cała drużyna jest z Tobą. Wiadomości wsparcia, wspomnienia i filmy dla naszej Kapitanki.">
+    <meta property="og:image" content="1.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wracaj do zdrowia, Kapitanie Kaja! ❤️">
+    <meta name="twitter:description" content="Cała drużyna jest z Tobą. Wiadomości wsparcia, wspomnienia i filmy dla naszej Kapitanki.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Small heart favicon, no extra file needed -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+    <!-- Speeds up the first YouTube embed connection -->
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+
     <style>
         * {
             margin: 0;
@@ -25,18 +44,72 @@
             overflow-x: hidden;
         }
 
-        /* Navigation & Language Switcher */
+        /* Skip link for keyboard / screen-reader users */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: #ef4444;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0 0 8px 0;
+            z-index: 3000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        /* Visible keyboard focus everywhere */
+        a:focus-visible,
+        button:focus-visible,
+        .gallery-item:focus-visible,
+        .card-img-preview:focus-visible {
+            outline: 3px solid #f87171;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Navigation Bar with Logo */
         .lang-bar {
             background: #020617;
-            padding: 0.8rem 1rem;
+            padding: 0.6rem 1.5rem;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
             border-bottom: 1px solid #1e293b;
             position: sticky;
             top: 0;
             z-index: 1000;
+        }
+
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .nav-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid #ef4444;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+        }
+
+        .nav-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-controls {
+            display: flex;
+            gap: 0.5rem;
         }
 
         .lang-btn {
@@ -47,7 +120,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
 
@@ -63,10 +136,19 @@
             padding: 2rem 1rem;
         }
 
+        /* Anchor targets: offset so the sticky nav never covers the heading */
+        #text-messages,
+        #gallery,
+        #memories-videos,
+        #messages,
+        #letter {
+            scroll-margin-top: 70px;
+        }
+
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 50vh;
+            min-height: 45vh;
             background: linear-gradient(135deg, #1e293b, #0f172a);
             display: flex;
             justify-content: center;
@@ -76,6 +158,13 @@
             border-bottom: 3px solid #ef4444;
         }
 
+        .hero-avatars {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
         .kaja-img {
             width: 150px;
             height: 150px;
@@ -83,7 +172,6 @@
             border-radius: 50%;
             border: 4px solid #ef4444;
             box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
-            margin-bottom: 1.2rem;
             transition: transform 0.3s ease;
         }
 
@@ -186,6 +274,39 @@
             font-weight: 500;
         }
 
+        .cheer-hint {
+            margin-top: 0.3rem;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Share button */
+        .share-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+
+        .share-btn {
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 0.5rem 1.1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.25s ease;
+        }
+
+        .share-btn:hover {
+            border-color: #ef4444;
+            color: #f8fafc;
+        }
+
         /* Floating Hearts Animation */
         .floating-heart {
             position: fixed;
@@ -276,7 +397,7 @@
             font-size: 1rem;
         }
 
-        /* Collapsible Text Messages Section */
+        /* Text Messages Section */
         .text-messages-section {
             padding: 3rem 1rem;
             background: #0f172a;
@@ -387,7 +508,7 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.2rem;
             margin-top: 1.8rem;
         }
@@ -402,6 +523,7 @@
             background: #1e293b;
             cursor: pointer;
             transition: transform 0.3s ease, border-color 0.3s ease;
+            padding: 0;
         }
 
         .gallery-item:hover {
@@ -441,24 +563,35 @@
 
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 16px;
+            right: 20px;
             color: #fff;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
             cursor: pointer;
             transition: color 0.2s ease;
+            background: rgba(15, 23, 42, 0.6);
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            line-height: 1;
         }
 
         .lightbox-close:hover {
             color: #ef4444;
         }
 
-        /* Modernized & Compact Video Section */
+        /* Video Section */
         .memories-section {
             padding: 3rem 1rem;
             text-align: center;
             background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+
+        .memories-section.alt-bg {
+            background: #0f172a;
         }
 
         .section-title {
@@ -489,6 +622,10 @@
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+        }
+
+        .alt-bg .video-card {
+            background-color: #1e293b;
         }
 
         .video-card:hover {
@@ -592,7 +729,23 @@
             border-top: 1px solid #1e293b;
         }
 
+        /* Respect users who asked their OS to reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            * {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
         @media (max-width: 600px) {
+            .nav-title {
+                display: none;
+            }
             .container {
                 padding: 1rem 0.8rem;
             }
@@ -602,8 +755,8 @@
             }
 
             .kaja-img {
-                width: 130px;
-                height: 130px;
+                width: 120px;
+                height: 120px;
             }
 
             .video-grid {
@@ -614,49 +767,55 @@
             .video-wrapper {
                 max-height: 300px;
             }
-
-            .letter-card {
-                padding: 1.2rem 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 0.8rem;
-            }
-
-            .msg-header {
-                padding: 1rem 1.2rem;
-                font-size: 1rem;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Language Navigation Bar -->
+    <a href="#main-content" class="skip-link" id="skip-link">Przejdź do treści</a>
+
+    <!-- Header Navigation with Integrated Logo -->
     <nav class="lang-bar">
-        <button class="lang-btn active" onclick="switchLanguage('pl')">🇵🇱 Polski</button>
-        <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 English</button>
+        <div class="nav-logo-container">
+            <img src="logo.jpg" alt="JAJNIKI GRUDZIĄDZ Logo" class="nav-logo" onerror="this.onerror=null; this.src='logo.png';">
+            <span class="nav-title">JAJNIKI GRUDZIĄDZ</span>
+        </div>
+        <div class="lang-controls" role="group" aria-label="Wybór języka / Language selection">
+            <button class="lang-btn active" data-lang="pl" onclick="switchLanguage('pl')" aria-pressed="true">🇵🇱 Polski</button>
+            <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" aria-pressed="false">🇬🇧 English</button>
+        </div>
     </nav>
+
+    <main id="main-content">
 
     <!-- Header / Hero Section -->
     <header class="hero">
         <div class="hero-content">
-            <img src="1.jpeg" alt="Captain Kaja" class="kaja-img" onerror="this.onerror=null; this.src='1.jpg';">
-            <br>
-            <span class="badge">#CaptainKaja</span>
+            <div class="hero-avatars">
+                <img src="1.jpeg" alt="Captain Kaja" class="kaja-img" onerror="this.onerror=null; this.src='1.jpg';">
+            </div>
+            <span class="badge" id="hero-badge">#CaptainKaja</span>
             <h1 id="hero-title">Dla naszej Kapitanki ❤️</h1>
             <p class="subtitle" id="hero-subtitle">Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.</p>
-            
+
             <div class="btn-group">
                 <a href="#text-messages" class="btn" id="hero-text-btn">Słowa Wsparcia 💬</a>
+                <a href="#memories-videos" class="btn btn-secondary" id="hero-memories-btn">Wspomnienia 💭</a>
                 <a href="#messages" class="btn btn-secondary" id="hero-btn">Wiadomości Wideo 🎥</a>
             </div>
 
             <!-- Cheer / Heart Counter Box -->
             <div class="cheer-box">
-                <button class="cheer-btn" onclick="addHeart(event)">Wyślij Wsparcie ❤️</button>
-                <div class="cheer-count" id="cheer-count-text">Wysłano 142 serc wsparcia!</div>
+                <button class="cheer-btn" onclick="addHeart(event)" id="cheer-btn" aria-label="Wyślij serce wsparcia">Wyślij Wsparcie ❤️</button>
+                <div class="cheer-count" id="cheer-count-text" aria-live="polite">Wysłano 142 serc wsparcia!</div>
+                <div class="cheer-hint" id="cheer-hint">Licznik jest zapisywany lokalnie w Twojej przeglądarce.</div>
+            </div>
+
+            <!-- Share the page -->
+            <div class="share-row">
+                <button class="share-btn" onclick="sharePage()" id="share-btn" aria-label="Udostępnij tę stronę">
+                    <span aria-hidden="true">🔗</span> <span id="share-btn-text">Udostępnij stronę</span>
+                </button>
             </div>
         </div>
     </header>
@@ -673,7 +832,7 @@
                     <!-- Text rendered via JS -->
                 </div>
                 <div class="letter-footer" id="letter-footer">
-                    — Roksana & Cała Drużyna ❤️
+                    — Roksana &amp; Cała Drużyna ❤️
                 </div>
             </div>
         </div>
@@ -686,37 +845,41 @@
             <p class="section-desc" id="text-sec-desc" style="text-align: center;">Kliknij na imię, aby przeczytać wiadomość:</p>
 
             <div class="messages-container">
-                
+
                 <!-- Message 1: Grecia -->
                 <div class="msg-accordion">
-                    <button class="msg-header" onclick="toggleAccordion(this)">
+                    <button class="msg-header" onclick="toggleAccordion(this)" aria-expanded="false" aria-controls="panel-grecia">
                         <span class="author">💌 Grecia</span>
-                        <span class="msg-icon">▼</span>
+                        <span class="msg-icon" aria-hidden="true">▼</span>
                     </button>
-                    <div class="msg-body" id="msg-grecia">
-                        <!-- Content rendered via JS -->
+                    <div class="msg-body" id="panel-grecia">
+                        <div id="msg-grecia">
+                            <!-- Content rendered via JS -->
+                        </div>
                     </div>
                 </div>
 
                 <!-- Message 2: Oliwia -->
                 <div class="msg-accordion">
-                    <button class="msg-header" onclick="toggleAccordion(this)">
+                    <button class="msg-header" onclick="toggleAccordion(this)" aria-expanded="false" aria-controls="panel-oliwia">
                         <span class="author">💌 Oliwia</span>
-                        <span class="msg-icon">▼</span>
+                        <span class="msg-icon" aria-hidden="true">▼</span>
                     </button>
-                    <div class="msg-body" id="msg-oliwia">
-                        <!-- Content rendered via JS -->
+                    <div class="msg-body" id="panel-oliwia">
+                        <div id="msg-oliwia">
+                            <!-- Content rendered via JS -->
+                        </div>
                     </div>
                 </div>
 
-                <!-- Message 3: Patrycja (Image + Interactive Text) -->
+                <!-- Message 3: Patrycja -->
                 <div class="msg-accordion">
-                    <button class="msg-header" onclick="toggleAccordion(this)">
+                    <button class="msg-header" onclick="toggleAccordion(this)" aria-expanded="false" aria-controls="panel-patrycja">
                         <span class="author">💌 Patrycja</span>
-                        <span class="msg-icon">▼</span>
+                        <span class="msg-icon" aria-hidden="true">▼</span>
                     </button>
-                    <div class="msg-body">
-                        <img src="Patrycja support .jpeg" alt="Patrycja Support" class="card-img-preview" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='Patrycja support .jpg';">
+                    <div class="msg-body" id="panel-patrycja">
+                        <img src="Patrycja support .jpeg" alt="Patrycja Support" class="card-img-preview" tabindex="0" onclick="openLightbox(this.src, event)" onerror="this.onerror=null; this.src='Patrycja support .jpg';">
                         <div id="msg-patrycja">
                             <!-- Content rendered via JS -->
                         </div>
@@ -734,164 +897,176 @@
             <p class="section-desc" id="photos-desc">Nasza drużyna na boisku i poza nim:</p>
 
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox('1.jpeg')"><img src="1.jpeg" alt="Drużyna" loading="lazy" onerror="this.onerror=null; this.src='1.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('3.jpeg')"><img src="3.jpeg" alt="Podróż" loading="lazy" onerror="this.onerror=null; this.src='3.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('4.jpeg')"><img src="4.jpeg" alt="Wakacje" loading="lazy" onerror="this.onerror=null; this.src='4.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('5.jpeg')"><img src="5.jpeg" alt="Lloret de Mar" loading="lazy" onerror="this.onerror=null; this.src='5.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('6.jpeg')"><img src="6.jpeg" alt="Jajniki Grudziądz" loading="lazy" onerror="this.onerror=null; this.src='6.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('7.jpeg')"><img src="7.jpeg" alt="Grupa czerwona" loading="lazy" onerror="this.onerror=null; this.src='7.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('8.jpeg')"><img src="8.jpeg" alt="Gry i zabawy" loading="lazy" onerror="this.onerror=null; this.src='8.jpg';"></div>
-                <div class="gallery-item" onclick="openLightbox('9.jpeg')"><img src="9.jpeg" alt="Odpoczynek" loading="lazy" onerror="this.onerror=null; this.src='9.jpg';"></div>
+                <button class="gallery-item" onclick="openLightbox('1.jpeg', event)" aria-label="Powiększ zdjęcie 1"><img src="1.jpeg" alt="Drużyna 1" loading="lazy" onerror="this.onerror=null; this.src='1.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('3.jpeg', event)" aria-label="Powiększ zdjęcie 3"><img src="3.jpeg" alt="Drużyna 3" loading="lazy" onerror="this.onerror=null; this.src='3.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('4.jpeg', event)" aria-label="Powiększ zdjęcie 4"><img src="4.jpeg" alt="Drużyna 4" loading="lazy" onerror="this.onerror=null; this.src='4.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('5.jpeg', event)" aria-label="Powiększ zdjęcie 5"><img src="5.jpeg" alt="Drużyna 5" loading="lazy" onerror="this.onerror=null; this.src='5.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('6.jpeg', event)" aria-label="Powiększ zdjęcie 6"><img src="6.jpeg" alt="Drużyna 6" loading="lazy" onerror="this.onerror=null; this.src='6.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('7.jpeg', event)" aria-label="Powiększ zdjęcie 7"><img src="7.jpeg" alt="Drużyna 7" loading="lazy" onerror="this.onerror=null; this.src='7.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('8.jpeg', event)" aria-label="Powiększ zdjęcie 8"><img src="8.jpeg" alt="Drużyna 8" loading="lazy" onerror="this.onerror=null; this.src='8.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('9.jpeg', event)" aria-label="Powiększ zdjęcie 9"><img src="9.jpeg" alt="Drużyna 9" loading="lazy" onerror="this.onerror=null; this.src='9.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('10 .JPEG', event)" aria-label="Powiększ zdjęcie 10"><img src="10 .JPEG" alt="Drużyna 10" loading="lazy" onerror="this.onerror=null; this.src='10.jpeg';"></button>
+                <button class="gallery-item" onclick="openLightbox('11.jpeg', event)" aria-label="Powiększ zdjęcie 11"><img src="11.jpeg" alt="Drużyna 11" loading="lazy" onerror="this.onerror=null; this.src='11.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('12.jpeg', event)" aria-label="Powiększ zdjęcie 12"><img src="12.jpeg" alt="Drużyna 12" loading="lazy" onerror="this.onerror=null; this.src='12.jpg';"></button>
+                <button class="gallery-item" onclick="openLightbox('13.jpeg', event)" aria-label="Powiększ zdjęcie 13"><img src="13.jpeg" alt="Drużyna 13" loading="lazy" onerror="this.onerror=null; this.src='13.jpg';"></button>
             </div>
         </div>
     </section>
 
-    <!-- Compact Video Messages Section -->
-    <section id="messages" class="memories-section fade-in-element">
+    <!-- Memories Videos -->
+    <section id="memories-videos" class="memories-section fade-in-element">
+        <div class="container">
+            <h2 class="section-title" id="memories-sec-title">Wspomnienia 💭</h2>
+            <p class="section-desc" id="memories-sec-desc">Wyjątkowe chwile z naszą Kapitanką:</p>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ZkTcMfsuJSo" title="Our Captain 2" loading="lazy" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Our Captain 2 ⚽</h3>
+                        <p id="v1-desc">Wiadomość wsparcia</p>
+                        <a href="https://youtube.com/shorts/ZkTcMfsuJSo?feature=share" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/cBEyaUOho5Q" title="Our Captain" loading="lazy" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Our Captain ⚽</h3>
+                        <p id="v2-desc">Wiadomość wsparcia</p>
+                        <a href="https://youtube.com/shorts/cBEyaUOho5Q?feature=share" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Video Messages -->
+    <section id="messages" class="memories-section alt-bg fade-in-element">
         <div class="container">
             <h2 class="section-title" id="memories-title">Wiadomości Wideo 🎥</h2>
             <p class="section-desc" id="memories-desc">Słowa wsparcia od Twoich koleżanek z boiska:</p>
 
             <div class="video-grid">
-                
-                <!-- Video 1: Our Captain 2 -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/ZkTcMfsuJSo" title="Our Captain 2" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3>Our Captain 2 ⚽</h3>
-                        <p id="v1-desc">Wiadomość wsparcia</p>
-                        <a href="https://youtube.com/shorts/ZkTcMfsuJSo?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
-                    </div>
-                </div>
-
-                <!-- Video 2: Our Captain -->
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/cBEyaUOho5Q" title="Our Captain" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3>Our Captain ⚽</h3>
-                        <p id="v2-desc">Wiadomość wsparcia</p>
-                        <a href="https://youtube.com/shorts/cBEyaUOho5Q?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
-                    </div>
-                </div>
-
-                <!-- Video 3: Szalona Support -->
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/tEHO9dkgxbM" title="Szalona Support" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/tEHO9dkgxbM" title="Szalona Support" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Szalona Support ⚽</h3>
                         <p id="v3-desc">Wiadomość wsparcia od Szalonej</p>
-                        <a href="https://youtube.com/shorts/tEHO9dkgxbM?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtube.com/shorts/tEHO9dkgxbM?feature=share" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
-                <!-- Video 4: Wiktoria Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/KuZzNOKrPxU" title="Wiktoria Support" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/KuZzNOKrPxU" title="Wiktoria Support" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Wiktoria Support ⚽</h3>
                         <p id="v4-desc">Wiadomość wsparcia od Wiktorii</p>
-                        <a href="https://youtube.com/shorts/KuZzNOKrPxU?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtube.com/shorts/KuZzNOKrPxU?feature=share" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
-                <!-- Video 5: Roksana Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/JdVbq1mwsEc" title="Roksana Support" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/JdVbq1mwsEc" title="Roksana Support" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Roksana Support ⚽</h3>
                         <p id="v5-desc">Wiadomość wsparcia od Roksany</p>
-                        <a href="https://youtube.com/shorts/JdVbq1mwsEc?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtube.com/shorts/JdVbq1mwsEc?feature=share" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
-                <!-- Video 6: Coach Rafal -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/pdTNZFQxXfs" title="Coach Rafal" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/pdTNZFQxXfs" title="Coach Rafal" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Coach Rafal ⚽</h3>
                         <p id="v6-desc">Wiadomość wsparcia od Trenera Rafała</p>
-                        <a href="https://youtu.be/pdTNZFQxXfs" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtu.be/pdTNZFQxXfs" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
-                <!-- Video 7: Jagoda Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/KN4jrSHPpDc" title="Jagoda Support" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/KN4jrSHPpDc" title="Jagoda Support" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Jagoda Support ⚽</h3>
                         <p id="v7-desc">Wiadomość wsparcia od Jagody</p>
-                        <a href="https://youtu.be/KN4jrSHPpDc" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtu.be/KN4jrSHPpDc" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
-                <!-- Video 8: Fatima Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/3g43y6Kij-s" title="Fatima Support" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/3g43y6Kij-s" title="Fatima Support" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Fatima Support ⚽</h3>
                         <p id="v8-desc">Wiadomość wsparcia od Fatimy</p>
-                        <a href="https://youtu.be/3g43y6Kij-s" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtu.be/3g43y6Kij-s" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
 
-                <!-- Video 9: Paulina Support -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/dxjlS3mrPZQ" title="Paulina Support" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/dxjlS3mrPZQ" title="Paulina Support" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Paulina Support ⚽</h3>
                         <p id="v9-desc">Wiadomość wsparcia od Pauliny</p>
-                        <a href="https://youtube.com/shorts/dxjlS3mrPZQ?feature=share" target="_blank" class="yt-link">Otwórz w YouTube ↗</a>
+                        <a href="https://youtube.com/shorts/dxjlS3mrPZQ?feature=share" target="_blank" rel="noopener noreferrer" class="yt-link">Otwórz w YouTube ↗</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Lightbox Modal for Images -->
-    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightboxImg" src="" alt="Enlarged View">
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia" aria-hidden="true">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zamknij podgląd">&times;</button>
+        <img id="lightboxImg" src="" alt="Powiększone zdjęcie" onclick="event.stopPropagation();">
     </div>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    <a href="#main-content" class="back-to-top" id="backToTop" aria-label="Powrót do góry strony" title="Powrót do góry">↑</a>
 
     <footer>
         <p id="footer-text">Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️</p>
     </footer>
 
-    <!-- Interactive Scripts & Multilingual Control -->
     <script>
-        let currentLanguage = 'pl';
-        let heartCount = parseInt(localStorage.getItem('kaja_heart_count')) || 142;
+        let currentLanguage = localStorage.getItem('kaja_lang') || 'pl';
+        let heartCount = parseInt(localStorage.getItem('kaja_heart_count'), 10) || 142;
+        let lastFocusedElement = null;
 
         const translations = {
             pl: {
+                heroBadge: "#CaptainKaja",
                 heroTitle: "Dla naszej Kapitanki ❤️",
                 heroSubtitle: "Wracaj do zdrowia, Kaja! | Cała drużyna jest z Tobą.",
                 heroTextBtn: "Słowa Wsparcia 💬",
+                heroMemoriesBtn: "Wspomnienia 💭",
                 heroBtn: "Wiadomości Wideo 🎥",
                 cheerBtn: "Wyślij Wsparcie ❤️",
                 cheerCountTemplate: "Wysłano {count} serc wsparcia!",
+                cheerHint: "Licznik jest zapisywany lokalnie w Twojej przeglądarce.",
+                shareBtnText: "Udostępnij stronę",
+                shareCopied: "Link skopiowany! ✅",
+                skipLink: "Przejdź do treści",
+                langGroupLabel: "Wybór języka",
                 letterTitle: "Dla naszej Kapitanki ❤️",
                 senderBadge: "Wiadomość od: Roksana",
                 letterFooter: "— Roksana & Cała Drużyna ❤️",
@@ -899,10 +1074,12 @@
                 textSecDesc: "Kliknij na imię, aby przeczytać wiadomość:",
                 photosTitle: "Wspólne Chwile 📸",
                 photosDesc: "Nasza drużyna na boisku i poza nim:",
+                memoriesSecTitle: "Wspomnienia 💭",
+                memoriesSecDesc: "Wyjątkowe chwile z naszą Kapitanką:",
                 memoriesTitle: "Wiadomości Wideo 🎥",
                 memoriesDesc: "Słowa wsparcia od Twoich koleżanek z boiska:",
-                v1Desc: "Wiadomość wsparcia",
-                v2Desc: "Wiadomość wsparcia",
+                v1Desc: "Wpisy ze wspólnych chwil",
+                v2Desc: "Wpisy ze wspólnych chwil",
                 v3Desc: "Wiadomość wsparcia od Szalonej",
                 v4Desc: "Wiadomość wsparcia od Wiktorii",
                 v5Desc: "Wiadomość wsparcia od Roksany",
@@ -926,7 +1103,7 @@
                 ],
                 letterParagraphs: [
                     "Są chwile, w których wynik meczu przestaje mieć znaczenie. Są momenty, kiedy najważniejszy staje się człowiek. Dziś cała nasza drużyna jest myślami z naszą Kapitanką, która doznała poważnej kontuzji.",
-                    "Twoja determinacja, waleczność i serce do gry od zawsze były dla nas inspiracją. Każdy trening i każdy mecz pokazywały, jak wiele znaczy dla Ciebie ta drużyna. Nie byłaś dla nas tylko zawodniczką z opaską na ramieniu – byłaś osobą, która motywowała nas do walki, dodawała odwagi w trudnych momentach i przypominała, że nigdy nie wolno się poddawać. Swoją postawą udowadniałaś, że prawdziwy lider nie prowadzi drużyny słowami, lecz własnym przykładem.",
+                    "Twoja determinacja, waleczność i serce do gry od zawsze były dla nas inspiracją. Każdy trening i każdy mecz pokazywały, jak wiele znaczy dla Ciebie ta drużyna. Nie byłaś dla nas tylko zawodniczką z opaską na ramieniu – bylaś osobą, która motywowała nas do walki, dodawała odwagi w trudnych momentach i przypominała, że nigdy nie wolno się poddawać. Swoją postawą udowadniałaś, że prawdziwy lider nie prowadzi drużyny słowami, lecz własnym przykładem.",
                     "Teraz nadszedł czas, abyśmy to my byli Twoim wsparciem.",
                     "Wiemy, że przed Tobą trudna droga – pełna rehabilitacji, cierpliwości i ciężkiej pracy. Będą dni lepsze i gorsze, chwile zwątpienia, zmęczenia i tęsknoty za boiskiem. To zupełnie naturalne. Pamiętaj jednak, że każda nawet najmniejsza poprawa jest krokiem bliżej powrotu. Każdy dzień walki przybliża Cię do chwili, w której znów poczujesz zapach murawy, usłyszysz pierwszy gwizdek i założysz korki z uśmiechem na twarzy.",
                     "Jeśli ktoś potrafi walczyć do końca, to właśnie Ty. Wielokrotnie pokazywałaś nam, że przeciwności są po to, by je pokonywać. Ta kontuzja nie odbiera Ci siły, charakteru ani tego, kim jesteś. To tylko rozdział w Twojej historii, a nie jej zakończenie.",
@@ -938,12 +1115,19 @@
                 ]
             },
             en: {
+                heroBadge: "#CaptainKaja",
                 heroTitle: "For Our Captain ❤️",
                 heroSubtitle: "Get well soon, Kaja! | The whole team stands with you.",
                 heroTextBtn: "Words of Support 💬",
+                heroMemoriesBtn: "Memories 💭",
                 heroBtn: "Video Messages 🎥",
                 cheerBtn: "Send Support ❤️",
                 cheerCountTemplate: "Sent {count} hearts of support!",
+                cheerHint: "This counter is saved locally in your browser.",
+                shareBtnText: "Share this page",
+                shareCopied: "Link copied! ✅",
+                skipLink: "Skip to content",
+                langGroupLabel: "Language selection",
                 letterTitle: "For Our Captain ❤️",
                 senderBadge: "Message from: Roksana",
                 letterFooter: "— Roksana & The Entire Team ❤️",
@@ -951,10 +1135,12 @@
                 textSecDesc: "Click on a name to read the message:",
                 photosTitle: "Shared Memories 📸",
                 photosDesc: "Our team on and off the pitch:",
+                memoriesSecTitle: "Memories 💭",
+                memoriesSecDesc: "Special moments with our Captain:",
                 memoriesTitle: "Video Messages 🎥",
                 memoriesDesc: "Words of support from your teammates:",
-                v1Desc: "Support message",
-                v2Desc: "Support message",
+                v1Desc: "Shared moments video",
+                v2Desc: "Shared moments video",
                 v3Desc: "Support message from Szalona",
                 v4Desc: "Support message from Wiktoria",
                 v5Desc: "Support message from Roksana",
@@ -974,7 +1160,7 @@
                     "I know it's not easy right now, but remember that we are with you and we believe in you deeply. This injury is just a temporary break, not the end. Rest, take care of yourself, and come back to us when you're ready. The whole team is waiting! ❤️💪"
                 ],
                 patrycjaMsg: [
-                    "Ahoy captain! 🫡⚽\nYour leg will heal quickly, and then the pitch will go wild! 🥅\nHeads up, because we'll still be jumping like kangaroos! 🦘\nThe top scorer title was right around the corner, but it'll have to wait... oh well! 🤷‍♀️🩷 Get well soon, mamita!"
+                    "Ahoy captain! 🫡⚽\nYour leg will heal quickly, and then the pitch will go wild! 0️\nHeads up, because we'll still be jumping like kangaroos! 🦘\nThe top scorer title was right around the corner, but it'll have to wait... oh well! 🤷‍♀️🩷 Get well soon, mamita!"
                 ],
                 letterParagraphs: [
                     "There are moments when the final score of a match ceases to matter. There are moments when the human being becomes the most important thing. Today, our entire team's thoughts are with our Captain, who suffered a serious injury.",
@@ -993,7 +1179,8 @@
 
         function toggleAccordion(buttonElement) {
             const accordion = buttonElement.parentElement;
-            accordion.classList.toggle('open');
+            const isOpen = accordion.classList.toggle('open');
+            buttonElement.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
 
         function updateCheerText() {
@@ -1006,12 +1193,13 @@
             localStorage.setItem('kaja_heart_count', heartCount);
             updateCheerText();
 
-            // Create animated floating heart
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
             heart.innerText = '❤️';
-            heart.style.left = e.clientX + 'px';
-            heart.style.top = e.clientY + 'px';
+            heart.setAttribute('aria-hidden', 'true');
+            const rect = e.currentTarget.getBoundingClientRect();
+            heart.style.left = (e.clientX || rect.left + rect.width / 2) + 'px';
+            heart.style.top = (e.clientY || rect.top) + 'px';
             document.body.appendChild(heart);
 
             setTimeout(() => {
@@ -1019,19 +1207,50 @@
             }, 1200);
         }
 
+        function sharePage() {
+            const shareData = {
+                title: document.title,
+                text: translations[currentLanguage].heroTitle,
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {});
+                return;
+            }
+
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const textEl = document.getElementById('share-btn-text');
+                const original = textEl.innerText;
+                textEl.innerText = translations[currentLanguage].shareCopied;
+                setTimeout(() => { textEl.innerText = original; }, 2000);
+            }).catch(() => {});
+        }
+
         function switchLanguage(lang) {
             currentLanguage = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            if(lang === 'pl') document.querySelectorAll('.lang-btn')[0].classList.add('active');
-            else document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            localStorage.setItem('kaja_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const active = btn.getAttribute('data-lang') === lang;
+                btn.classList.toggle('active', active);
+                btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
 
             const data = translations[lang];
+            document.documentElement.lang = lang;
 
+            document.getElementById('hero-badge').innerText = data.heroBadge;
             document.getElementById('hero-title').innerText = data.heroTitle;
             document.getElementById('hero-subtitle').innerText = data.heroSubtitle;
             document.getElementById('hero-text-btn').innerText = data.heroTextBtn;
+            document.getElementById('hero-memories-btn').innerText = data.heroMemoriesBtn;
             document.getElementById('hero-btn').innerText = data.heroBtn;
-            document.querySelector('.cheer-btn').innerText = data.cheerBtn;
+            document.getElementById('cheer-btn').innerText = data.cheerBtn;
+            document.getElementById('cheer-hint').innerText = data.cheerHint;
+            document.getElementById('share-btn-text').innerText = data.shareBtnText;
+            document.getElementById('skip-link').innerText = data.skipLink;
+            document.querySelector('.lang-controls').setAttribute('aria-label', data.langGroupLabel);
             document.getElementById('letter-title').innerText = data.letterTitle;
             document.getElementById('sender-badge').innerText = data.senderBadge;
             document.getElementById('letter-footer').innerText = data.letterFooter;
@@ -1039,6 +1258,8 @@
             document.getElementById('text-sec-desc').innerText = data.textSecDesc;
             document.getElementById('photos-title').innerText = data.photosTitle;
             document.getElementById('photos-desc').innerText = data.photosDesc;
+            document.getElementById('memories-sec-title').innerText = data.memoriesSecTitle;
+            document.getElementById('memories-sec-desc').innerText = data.memoriesSecDesc;
             document.getElementById('memories-title').innerText = data.memoriesTitle;
             document.getElementById('memories-desc').innerText = data.memoriesDesc;
             document.getElementById('v1-desc').innerText = data.v1Desc;
@@ -1054,7 +1275,6 @@
 
             updateCheerText();
 
-            // Render Main Letter Body
             const letterContainer = document.getElementById('letter-body');
             letterContainer.innerHTML = '';
             data.letterParagraphs.forEach(text => {
@@ -1063,7 +1283,6 @@
                 letterContainer.appendChild(p);
             });
 
-            // Render Grecia Message
             const greciaContainer = document.getElementById('msg-grecia');
             greciaContainer.innerHTML = '';
             data.greciaMsg.forEach(text => {
@@ -1072,7 +1291,6 @@
                 greciaContainer.appendChild(p);
             });
 
-            // Render Oliwia Message
             const oliwiaContainer = document.getElementById('msg-oliwia');
             oliwiaContainer.innerHTML = '';
             data.oliwiaMsg.forEach(text => {
@@ -1081,7 +1299,6 @@
                 oliwiaContainer.appendChild(p);
             });
 
-            // Render Patrycja Message
             const patrycjaContainer = document.getElementById('msg-patrycja');
             patrycjaContainer.innerHTML = '';
             data.patrycjaMsg.forEach(text => {
@@ -1091,19 +1308,35 @@
             });
         }
 
-        /* Lightbox Image View */
-        function openLightbox(src) {
+        function openLightbox(src, evt) {
+            if (evt) evt.stopPropagation();
+            lastFocusedElement = document.activeElement;
             const modal = document.getElementById('lightboxModal');
             const img = document.getElementById('lightboxImg');
             img.src = src;
             modal.style.display = 'flex';
+            modal.setAttribute('aria-hidden', 'false');
+            document.querySelector('.lightbox-close').focus();
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
-            document.getElementById('lightboxModal').style.display = 'none';
+            const modal = document.getElementById('lightboxModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
         }
 
-        /* Scroll Animations & Back to Top Button */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('lightboxModal');
+                if (modal.style.display === 'flex') {
+                    closeLightbox();
+                }
+            }
+        });
+
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('backToTop');
             if (window.scrollY > 300) {
@@ -1112,7 +1345,6 @@
                 btn.style.display = 'none';
             }
 
-            // Reveal elements on scroll
             document.querySelectorAll('.fade-in-element').forEach(el => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top <= window.innerHeight * 0.85) {
@@ -1122,9 +1354,15 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
-            switchLanguage('pl');
-            // Trigger scroll check on load
+            switchLanguage(currentLanguage);
             window.dispatchEvent(new Event('scroll'));
+
+            // Hide the share button in browsers that support neither the
+            // Web Share API nor the Clipboard API (very old browsers only).
+            if (!navigator.share && !navigator.clipboard) {
+                const shareRow = document.querySelector('.share-row');
+                if (shareRow) shareRow.style.display = 'none';
+            }
         });
     </script>
 </body>
