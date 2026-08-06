@@ -24,7 +24,121 @@
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://i.ytimg.com">
 
+<!-- --- 10. HTML Rotating Quote Banner --- -->
+<div class="quote-container" style="text-align: center; margin: 15px 0; font-style: italic; opacity: 0.9;">
+    <p id="rotatingQuote">"Szybki powrót do zdrowia Kaja!"</p>
+</div>
+
+
+
+
+
+
     <style>
+
+
+
+/* --- 5. CSS Ken Burns Effect --- */
+.gallery-item {
+    overflow: hidden;
+}
+.gallery-item img {
+    transition: transform 6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+.gallery-item:hover img {
+    transform: scale(1.25) rotate(1deg);
+}
+
+/* --- 3. CSS Heart Canvas --- */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+
+        /* --- 2. CSS Music Player --- */
+.music-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #e63946;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+.music-btn:hover { transform: scale(1.1); }
+.music-btn.playing { animation: pulse 1.5s infinite; }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+}
+
+/* --- 1. CSS Preloader --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1d3557;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top: 5px solid #e63946;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.preloader-text {
+    color: white;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+        /* 1. CSS */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
         * {
             margin: 0;
             padding: 0;
@@ -742,6 +856,7 @@
             }
         }
 
+        
         @media (max-width: 600px) {
             .nav-title {
                 display: none;
@@ -768,9 +883,31 @@
                 max-height: 300px;
             }
         }
+
+        
     </style>
 </head>
+
+
+
+
+
+
+
 <body>
+
+<audio id="bgMusic" loop src="woda.mp3"></audio>
+
+<!-- --- 3. HTML Particles (ضعه بعد <body> مباشرة) --- -->
+<canvas id="particle-canvas"></canvas>
+
+
+
+    <!-- --- 1. HTML Preloader (ضعه مباشرة بعد <body>) --- -->
+<div id="preloader">
+    <div class="spinner"></div>
+    <div class="preloader-text">Loading Captain Kaja Support...</div>
+</div>
 
     <a href="#main-content" class="skip-link" id="skip-link">Przejdź do treści</a>
 
@@ -905,7 +1042,7 @@
                 <button class="gallery-item" onclick="openLightbox('7.jpeg', event)" aria-label="Powiększ zdjęcie 7"><img src="7.jpeg" alt="Drużyna 7" loading="lazy" onerror="this.onerror=null; this.src='7.jpg';"></button>
                 <button class="gallery-item" onclick="openLightbox('8.jpeg', event)" aria-label="Powiększ zdjęcie 8"><img src="8.jpeg" alt="Drużyna 8" loading="lazy" onerror="this.onerror=null; this.src='8.jpg';"></button>
                 <button class="gallery-item" onclick="openLightbox('9.jpeg', event)" aria-label="Powiększ zdjęcie 9"><img src="9.jpeg" alt="Drużyna 9" loading="lazy" onerror="this.onerror=null; this.src='9.jpg';"></button>
-                <button class="gallery-item" onclick="openLightbox('10.JPEG', event)" aria-label="Powiększ zdjęcie 10"><img src="10 .JPEG" alt="Drużyna 10" loading="lazy" onerror="this.onerror=null; this.src='10.jpeg';"></button>
+                <button class="gallery-item" onclick="openLightbox('10 .JPEG', event)" aria-label="Powiększ zdjęcie 10"><img src="10 .JPEG" alt="Drużyna 10" loading="lazy" onerror="this.onerror=null; this.src='10.jpeg';"></button>
                 <button class="gallery-item" onclick="openLightbox('11.jpeg', event)" aria-label="Powiększ zdjęcie 11"><img src="11.jpeg" alt="Drużyna 11" loading="lazy" onerror="this.onerror=null; this.src='11.jpg';"></button>
                 <button class="gallery-item" onclick="openLightbox('12.jpeg', event)" aria-label="Powiększ zdjęcie 12"><img src="12.jpeg" alt="Drużyna 12" loading="lazy" onerror="this.onerror=null; this.src='12.jpg';"></button>
                 <button class="gallery-item" onclick="openLightbox('13.jpeg', event)" aria-label="Powiększ zdjęcie 13"><img src="13.jpeg" alt="Drużyna 13" loading="lazy" onerror="this.onerror=null; this.src='13.jpg';"></button>
@@ -1047,7 +1184,145 @@
         <p id="footer-text">Strona stworzona z miłością dla Kapitanki Kaji | 2026 ❤️</p>
     </footer>
 
+
+
+
+
+
+
+
+
+
+
     <script>
+
+function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicToggleBtn');
+    const icon = document.getElementById('musicIcon');
+    
+    music.volume = 0.4; 
+
+    if (music.paused) {
+        music.play();
+        btn.classList.add('playing');
+        // تغيير شكل الأيقونة لإيقاف مؤقت (Pause)
+        icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+    } else {
+        music.pause();
+        btn.classList.remove('playing');
+        // تغيير شكل الأيقونة لنوتة موسيقية (Music Note)
+        icon.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+    }
+}
+
+
+
+// --- 10. JavaScript Auto Quotes ---
+const quotesList = [
+    '"Szybki powrót do zdrowia Kaja!"',
+    '"Wszyscy jesteśmy z Tobą w tym trudnym czasie!"',
+    '"Jesteś naszą siłą na boisku i poza nim!"',
+    '"Wracaj do nas szybko, Kapitanie!"'
+];
+let currentQuoteIndex = 0;
+
+setInterval(() => {
+    currentQuoteIndex = (currentQuoteIndex + 1) % quotesList.length;
+    const quoteElem = document.getElementById('rotatingQuote');
+    if(quoteElem) {
+        quoteElem.style.opacity = 0;
+        setTimeout(() => {
+            quoteElem.innerText = quotesList[currentQuoteIndex];
+            quoteElem.style.opacity = 1;
+        }, 400);
+    }
+}, 4000);
+
+// --- 3. JavaScript Heart Canvas ---
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 100;
+        this.size = Math.random() * 15 + 8;
+        this.speedY = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+    }
+    update() {
+        this.y -= this.speedY;
+        if (this.y < -20) this.reset();
+    }
+    draw() {
+        ctx.fillStyle = `rgba(230, 57, 70, ${this.opacity})`;
+        ctx.font = `${this.size}px FontAwesome, sans-serif`;
+        ctx.fillText('♥', this.x, this.y);
+    }
+}
+
+for (let i = 0; i < 35; i++) particles.push(new Particle());
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+
+
+
+// --- 2. JavaScript Music Player ---
+function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicToggleBtn');
+    
+    if (music.paused) {
+        music.play();
+        btn.classList.add('playing');
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
+        music.pause();
+        btn.classList.remove('playing');
+        btn.innerHTML = '<i class="fa-solid fa-music"></i>';
+    }
+}
+
+
+// --- 1. JavaScript Preloader ---
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+    }, 500);
+});
+
+        // 2. JavaScript: ضع هذا الكود داخل حدث scroll
+window.addEventListener('scroll', () => {
+    const fadeElements = document.querySelectorAll('.fade-in-element');
+    fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+            element.classList.add('visible');
+        }
+    });
+});
         let currentLanguage = localStorage.getItem('kaja_lang') || 'pl';
         let heartCount = parseInt(localStorage.getItem('kaja_heart_count'), 10) || 142;
         let lastFocusedElement = null;
@@ -1365,5 +1640,12 @@
             }
         });
     </script>
+<audio id="bgMusic" loop src="woda.mp3"></audio>
+
+<button class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
+    <svg id="musicIcon" width="22" height="22" viewBox="0 0 24 24" fill="white">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+</button>
 </body>
 </html>
